@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error and Access Logging</title>
+</head>
+<body>
+
+<h1>Error and Access Logging</h1>
+
+<!-- Access Log -->
+<h2>Access Log</h2>
+<div id="accessLog"></div>
+
+<!-- Error Log -->
+<h2>Error Log</h2>
+<div id="errorLog"></div>
+
+<!-- Status Endpoint -->
+<h2>Status</h2>
+<div id="status"></div>
+
+<script>
+// Function to log access
+function logAccess(url) {
+    var accessLog = document.getElementById("accessLog");
+    var timestamp = new Date().toLocaleString();
+    accessLog.innerHTML += "<p>Accessed: " + url + " at " + timestamp + "</p>";
+}
+
+// Function to log errors
+function logError(message) {
+    var errorLog = document.getElementById("errorLog");
+    var timestamp = new Date().toLocaleString();
+    errorLog.innerHTML += "<p>Error: " + message + " at " + timestamp + "</p>";
+}
+
+// Function to check status
+function checkStatus() {
+    var statusDiv = document.getElementById("status");
+    statusDiv.textContent = '{"Status": "UP"}';
+}
+
+// Simulating access to a page
+logAccess(window.location.href);
+
+// Simulating an error
+try {
+    nonexistentFunction();
+} catch (error) {
+    logError(error.message);
+}
+
+// Check status
+checkStatus();
+</script>
+
+</body>
+</html>
+
